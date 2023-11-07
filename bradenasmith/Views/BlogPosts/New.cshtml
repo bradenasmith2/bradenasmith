@@ -1,0 +1,58 @@
+﻿<link href="~/css/custom-css.css" rel="stylesheet"/>
+<h1>Create a new Blog Post</h1>
+
+<h4>First, how many sections are there?</h4>
+<p style="color: red;">Minimum of 2, Maximum of 5</p>
+<select id="sections">
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+</select>
+
+<div id="selectedOption"></div>
+<div id="textInputs"></div>
+
+<script>
+    const selectElement = document.getElementById("sections");
+    const selectedOptionDisplay = document.getElementById("selectedOption");
+    const textInputsContainer = document.getElementById("textInputs");
+
+    selectElement.addEventListener("change", function () {
+        const selectedOption = parseInt(selectElement.value, 10);
+        selectedOptionDisplay.textContent = `Selected option: ${selectedOption}`;
+
+        // Clear previous text inputs
+        textInputsContainer.innerHTML = "";
+
+        // Create and append sets of "Title" and "Content" elements
+        for (let i = 0; i < selectedOption; i++) {
+            // Create a container div for each set
+            const setContainer = document.createElement("div");
+            setContainer.classList.add("text-input-set");
+            textInputsContainer.appendChild(setContainer);
+
+            const titleLabel = document.createElement("label");
+            titleLabel.textContent = `Section ${i + 1} Title:`;
+            titleLabel.classList.add("title-label");
+            setContainer.appendChild(titleLabel);
+
+            const titleInput = document.createElement("input");
+            titleInput.type = "text";
+            titleInput.placeholder = `Title ${i + 1}`;
+            titleInput.classList.add("form-control", "form-control-lg");
+            setContainer.appendChild(titleInput);
+
+            const contentLabel = document.createElement("label");
+            contentLabel.textContent = `Section ${i + 1} Content:`;
+            contentLabel.classList.add("content-label");
+            setContainer.appendChild(contentLabel);
+
+            const contentInput = document.createElement("textarea");
+            contentInput.type = "text";
+            contentInput.placeholder = `Content ${i + 1}`;
+            contentInput.classList.add("form-control");
+            setContainer.appendChild(contentInput);
+        }
+    });
+</script>

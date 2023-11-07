@@ -5,3 +5,13 @@
     border-width: 1px;
     border-radius: 25px;
 }
+
+.title-label, .content-label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.text-input-set {
+    margin-top: 50px;
+}

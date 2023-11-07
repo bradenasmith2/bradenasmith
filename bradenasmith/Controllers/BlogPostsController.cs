@@ -2,16 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 
-namespace bradenasmith.Controllers
+namespace bradenasmith
 {
     public class BlogPostsController : Controller
     {
-        private readonly IGitHubApiService _gitHubApiService;
+        //private readonly IBlogPostService _blogPostService;
 
-        public BlogPostsController(IGitHubApiService gitHubApiService)
-        {
-            _gitHubApiService = gitHubApiService;
-        }
+        //public BlogPostsController(IBlogPostService blogPostService)
+        //{
+        //    _blogPostService = blogPostService;
+        //}
 
         [Route("/Blogs")]
         public IActionResult Index()
@@ -20,7 +20,13 @@ namespace bradenasmith.Controllers
         }
 
         [Route("/Blogs/{Title}")]
-        public IActionResult Show(string Title)
+        public IActionResult Show(string topic)
+        {
+            return View();
+        }
+
+        [Route("/Blogs/New")]
+        public IActionResult New()
         {
             return View();
         }

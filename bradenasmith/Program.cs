@@ -1,7 +1,9 @@
+using bradenasmith;
 using bradenasmith.Interfaces;
 using bradenasmith.Models;
 using bradenasmith.Services;
 using Serilog;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

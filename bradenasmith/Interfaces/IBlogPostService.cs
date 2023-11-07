@@ -1,9 +1,9 @@
 ﻿using bradenasmith.Models;
 
-namespace bradenasmith.Interfaces
+namespace bradenasmith
 {
     public interface IBlogPostService
     {
-        Task<BlogPost> GetBlogPost(string title);
+        BlogPost GetBlogPost(string title);
     }
 }
