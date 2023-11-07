@@ -34,5 +34,23 @@ namespace bradenasmith.Services
             }
             return result;
         }
+
+        public async Task<Project> GetProjectAsync(string projectName, string username)
+        {
+            string url = $"/repos/{username}/{projectName}";
+            var result = new Project();
+            var response = await Client.GetAsync(url);
+
+            if(response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<Project>(stringResponse, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            }
+            else
+            {
+                throw new HttpRequestException(response.ReasonPhrase) ;
+            }
+            return result;
+        }
     }
 }
