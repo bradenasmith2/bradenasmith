@@ -1,7 +1,19 @@
+using bradenasmith.Interfaces;
+using bradenasmith.Models;
+using bradenasmith.Services;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IGitHubApiService, GitHubApiService>();
+
+Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("Logs", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
 
 var app = builder.Build();
 
