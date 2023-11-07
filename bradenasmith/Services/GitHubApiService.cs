@@ -8,11 +8,13 @@ namespace bradenasmith.Services
     public class GitHubApiService : IGitHubApiService
     {
         private readonly HttpClient Client;
+        private readonly IConfiguration _configuration;
 
-        public GitHubApiService()
+        public GitHubApiService(IConfiguration configuartion)
         {
+            _configuration = configuartion;
             Client = new HttpClient() { BaseAddress = new Uri("https://api.github.com") };
-            Client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Bearer", "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"));
+            Client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Bearer", _configuration["GitHubApiToken"]));
         }
 
         public async Task<List<Project>> GetAllReposAsync()
