@@ -18,6 +18,18 @@ namespace bradenasmith.Controllers
             return View();
         }
 
+        [Route("/Resume")]
+        public IActionResult Resume()
+        {
+            return View();
+        }
+
+        [Route("/CoverLetter")]
+        public IActionResult CoverLetter() 
+        { 
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

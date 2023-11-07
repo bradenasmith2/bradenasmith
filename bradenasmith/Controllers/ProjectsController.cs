@@ -12,6 +12,7 @@ namespace bradenasmith.Controllers
             _gitHubApiService = gitHubApiService;
         }
 
+        [Route("/Projects")]
         public async Task<IActionResult> Index()
         {
             var repos = await _gitHubApiService.GetAllReposAsync();
