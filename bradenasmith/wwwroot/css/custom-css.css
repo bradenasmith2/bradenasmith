@@ -1,0 +1,7 @@
+﻿.headshot {
+    height: 300px;
+    width: 300px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 25px;
+}
