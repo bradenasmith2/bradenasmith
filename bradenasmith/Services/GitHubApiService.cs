@@ -10,9 +10,9 @@ namespace bradenasmith.Services
         private readonly HttpClient Client;
         private readonly IConfiguration _configuration;
 
-        public GitHubApiService(IConfiguration configuartion)
+        public GitHubApiService(IConfiguration configuration)
         {
-            _configuration = configuartion;
+            _configuration = configuration;
             Client = new HttpClient() { BaseAddress = new Uri("https://api.github.com") };
             Client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Bearer", _configuration["GitHubApiToken"]));
         }

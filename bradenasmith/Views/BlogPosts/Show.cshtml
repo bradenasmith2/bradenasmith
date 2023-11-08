@@ -1,0 +1,29 @@
+﻿@model BlogPost
+
+<h1>@Model.Topic</h1>
+<p><strong>Braden Smith</strong></p>
+<p><strong>@Model.CreatedAt.ToShortDateString()</strong></p>
+
+<h3>@Model.SecOneTitle</h3>
+<h6>@Model.SecOneContent</h6>
+
+<h3>@Model.SecTwoTitle</h3>
+<h6>@Model.SecTwoContent</h6>
+
+@if(Model.SecThreeTitle != null && Model.SecThreeContent != null)
+{
+    <h3>@Model.SecThreeTitle</h3>
+    <h6>@Model.SecThreeContent</h6>
+}
+
+@if (Model.SecFourTitle != null && Model.SecFourContent != null)
+{
+    <h3>@Model.SecFourTitle</h3>
+    <h6>@Model.SecFourContent</h6>
+}
+
+@if (Model.SecFiveTitle != null && Model.SecFiveContent != null)
+{
+    <h3>@Model.SecFiveTitle</h3>
+    <h6>@Model.SecFiveContent</h6>
+}
