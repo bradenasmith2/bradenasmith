@@ -4,6 +4,8 @@ using bradenasmith.Models;
 using bradenasmith.Services;
 using Serilog;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using bradenasmith.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,18 @@ Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()
             .WriteTo.File("Logs", rollingInterval: RollingInterval.Day)
             .CreateLogger();
+
+builder.Services.AddDbContext<bradenasmithContext>(
+    options =>
+        options
+            .UseNpgsql(
+                builder.Configuration["bradenasmith_DBCONNECTIONSTRING"]
+                    ?? throw new InvalidOperationException(
+                        "Connection string 'bradenasmithShowcase' not found."
+                    )
+            )
+            .UseSnakeCaseNamingConvention()
+);
 
 var app = builder.Build();
 

@@ -15,3 +15,8 @@
 .text-input-set {
     margin-top: 50px;
 }
+
+.project-name {
+    all: unset !important;
+    color: red;
+}

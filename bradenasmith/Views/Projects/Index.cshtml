@@ -1,10 +1,11 @@
-﻿@model List<Project>
+﻿<link href="/css/custom-css.css" rel="stylesheet"/>
+@model List<Project>
 
 @if(Model != null)
 {
     foreach(var e in Model)
     {
-        <h4>@e.Name</h4>
+        <h4 class="project-name">@e.Name</h4>
         <p>@e.Description</p>
         <p>@e.Id</p>
     }
