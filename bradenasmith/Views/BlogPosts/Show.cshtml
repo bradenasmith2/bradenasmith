@@ -1,29 +1,53 @@
 ﻿@model BlogPost
 
-<h1>@Model.Topic</h1>
-<p><strong>Braden Smith</strong></p>
-<p><strong>@Model.CreatedAt.ToShortDateString()</strong></p>
+    <h1>@Model.Topic</h1>
 
-<h3>@Model.SecOneTitle</h3>
-<h6>@Model.SecOneContent</h6>
+    <p><strong>Braden Smith</strong></p>
+    <p><strong>@Model.CreatedAt.ToShortDateString()</strong></p>
 
-<h3>@Model.SecTwoTitle</h3>
-<h6>@Model.SecTwoContent</h6>
+    <h3>@Model.SecOneTitle</h3>
+    <h6>@Model.SecOneContent</h6>
 
-@if(Model.SecThreeTitle != null && Model.SecThreeContent != null)
+    <h3>@Model.SecTwoTitle</h3>
+    <h6>@Model.SecTwoContent</h6>
+
+    @if (Model.SecThreeTitle != null && Model.SecThreeContent != null)
+    {
+        <h3>@Model.SecThreeTitle</h3>
+        <h6>@Model.SecThreeContent</h6>
+    }
+
+    @if (Model.SecFourTitle != null && Model.SecFourContent != null)
+    {
+        <h3>@Model.SecFourTitle</h3>
+        <h6>@Model.SecFourContent</h6>
+    }
+
+    @if (Model.SecFiveTitle != null && Model.SecFiveContent != null)
+    {
+        <h3>@Model.SecFiveTitle</h3>
+        <h6>@Model.SecFiveContent</h6>
+    }
+
+<button id="showCommentButton">Show Comment Box</button>
+<div id="commentBox" style="display: none;">
+
+    <form action="/Blogs/@Model.Topic/Comment/New" method="post">
+        <textarea id="commentText" rows="4" cols="50" placeholder="Start typing..." name="Content"></textarea>
+        <input hidden value="@Model.Id" name="BlogPostId" />
+        @*<input hidden value="@DateTime.Now.ToUniversalTime()" name="CreatedAt" /><!--THIS IS SENT PROPERLY-->*@
+
+        <button id="addCommentButton" type="submit">Add Comment</button>
+    </form> 
+</div>
+
+@if (Model.Comments != null)
 {
-    <h3>@Model.SecThreeTitle</h3>
-    <h6>@Model.SecThreeContent</h6>
+    <ul class="comments">
+        @foreach (var e in Model.Comments)
+        {
+            <li><span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> @e.Content</li>
+        }
+    </ul>
 }
-
-@if (Model.SecFourTitle != null && Model.SecFourContent != null)
-{
-    <h3>@Model.SecFourTitle</h3>
-    <h6>@Model.SecFourContent</h6>
-}
-
-@if (Model.SecFiveTitle != null && Model.SecFiveContent != null)
-{
-    <h3>@Model.SecFiveTitle</h3>
-    <h6>@Model.SecFiveContent</h6>
-}
+<script src="script.js"></script>

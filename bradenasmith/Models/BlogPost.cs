@@ -10,6 +10,7 @@ namespace bradenasmith
         public int Id { get; set; }
         public string Topic { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now.ToUniversalTime();
+        public List<Comment>? Comments { get; set; } = new List<Comment>();
         public string SecOneTitle { get; set; }
         public string SecOneContent { get; set; }
         public string SecTwoTitle { get; set; }

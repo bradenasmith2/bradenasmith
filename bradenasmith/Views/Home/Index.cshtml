@@ -1,14 +1,62 @@
-﻿<link href="/css/custom-css.css" rel="stylesheet"/>
+﻿<link rel="stylesheet" href="~/css/HomePage.css"/>
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="hs-info">
-    <img class="headshot" src="https://media.licdn.com/dms/image/D5603AQGA3yieeW9xmg/profile-displayphoto-shrink_200_200/0/1690300080608?e=1704931200&v=beta&t=uS05p8iNd8oPNXvvyMEtTwbOsyHHEkk3O5UYSVNChz0" />
-    <ul class="info">
-        <li><a href="https://www.linkedin.com/in/braden-smith2/">LinkedIn</a></li>
-        <li><a href="https://github.com/bradenasmith2">GitHub</a></li>
+
+<div class="home-flex">
+
+
+<!--Headshot-->
+<div class="column1">
+    <div>
+        <img src="https://ca.slack-edge.com/T029P2S9M-U04PR6NPK1V-aa041917439f-512" class="headshot-img" />
+    </div>
+    <!--Headshot-->
+    <hr style="border: 1px solid #000;"/>
+    <!--Find me here-->
+    <div class="socials">
+        <h2>Find me here</h2>
+        <ul>
+            <li><a href="https://www.linkedin.com/in/braden-smith2/"><button class="ln-btn">LinkedIn</button></a></li>
+            <li><a href="https://github.com/bradenasmith2"><button class="gh-btn">GitHub</button></a></li>
+        </ul>
+    </div>
+    <!--Find me here-->
+
+    <!--Or, send me a message-->
+    <div class="socials" style="margin-top: 50px;">
+        <h2>Or, send me a message!</h2>
+        <h5>smithabraden@gmail.com</h5>
+    </div>
+<!--Or, send me a message-->
+</div>
+
+<div class="column2">
+<!--Titles-->
+<div class="socials">
+    <h1 style="font-size: 72px; margin-bottom: 0px; display: inline">Braden Smith</h1>
+    <p style="margin: 2px; padding: 0px; display: inline">He/Him</p>
+    <h4>Full-Stack Engineer</h4>
+
+    <h5 style="margin-top: 50px;">I'm a passionate backend software developer with a strong interest in front-end. Committed to creating efficient, user-friendly applications. Eager to learn and stay current with industry trends and technologies.</h5>
+</div>
+<!--Titles-->
+<hr style="border: 1px solid #000;" />
+<!--Start Exploring-->
+<div class="explore">
+    <h2 style="text-align: center;">Start exploring!</h2>
+    <ul>
+        <li>Click on <strong>About Me</strong> to explore my career, interests, and achievements!</li>
+        <li>Check out <strong>My Projects</strong> to see my favorite projects I've worked on!</li>
+        <li>Curious about my struggles and learnings? View my blog posts under <strong>Today I Learned</strong>!</li>
     </ul>
 </div>
-<div>
-    <h2>Braden Smith</h2>
+<!--Start Exploring-->
+
+<!--Thanks-->
+<div class="socials" style="margin-top: 150px;">
+    <h2>Thanks for checking out my website! If you find anything interesting, want to know more, or are curious about how a feature works, send me a message or connect with me!</h2>
+</div>
+<!--Thanks-->
+</div>
 </div>

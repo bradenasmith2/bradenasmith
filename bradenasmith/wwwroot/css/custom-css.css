@@ -1,12 +1,4 @@
-﻿.headshot {
-    height: 300px;
-    width: 300px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 25px;
-}
-
-.title-label, .content-label {
+﻿.title-label, .content-label {
     display: block;
     font-weight: bold;
     margin-top: 10px;
@@ -16,7 +8,3 @@
     margin-top: 50px;
 }
 
-.project-name {
-    all: unset !important;
-    color: red;
-}

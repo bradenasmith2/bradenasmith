@@ -1,0 +1,77 @@
+﻿.home-flex {
+    display: flex;
+    height: 100vh;
+}
+
+.headshot-img {
+    border: solid;
+    border-width: 1.5px;
+    border-radius: 50px;
+    margin-top: 50px;
+}
+
+.socials {
+    text-align: center;
+}
+
+    .socials ul{
+        list-style: none;
+    }
+
+    .socials button {
+        margin-bottom: 12px;
+        margin-right: 35px;
+
+        display: inline-block;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        background: #000000;
+        color: #FFFFFF;
+        padding: 14px 24px 16px;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1;
+        transition: transform 200ms,background 200ms;
+        width: 120px
+    }
+
+        .socials button:hover {
+            transform: translateY(-2px);
+        }
+        
+.gh-btn {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.ln-btn {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.column1 {
+    flex: 0 0 35%; /* Flex-grow, flex-shrink, flex-basis */
+    padding: 20px; /* Add padding for spacing */
+}
+
+.column2 {
+    flex: 1; /* Takes up remaining space */
+    padding: 20px; /* Optional: Add padding for spacing */
+    margin-top: 50px;
+}
+
+.explore {
+    margin-top: 150px;
+}
+
+    .explore ul {
+        margin-top: 15px;
+        list-style: none;
+    }
+
+    .explore li {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
