@@ -8,8 +8,10 @@
         // Toggle the display of the comment box when the button is clicked
         if (commentBox.style.display === "none") {
             commentBox.style.display = "block";
+            showCommentButton.innerHTML = "Hide Comment Box";
         } else {
             commentBox.style.display = "none";
+            showCommentButton.innerHTML = "Add a Comment";
         }
     });
 

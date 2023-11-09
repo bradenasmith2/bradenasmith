@@ -51,13 +51,13 @@
 }
 
 .column1 {
-    flex: 0 0 35%; /* Flex-grow, flex-shrink, flex-basis */
-    padding: 20px; /* Add padding for spacing */
+    flex: 0 0 35%;
+    padding: 20px; /* Add padding for spacing between */
 }
 
 .column2 {
-    flex: 1; /* Takes up remaining space */
-    padding: 20px; /* Optional: Add padding for spacing */
+    flex: 1;
+    padding: 20px; /* Add padding for spacing between */
     margin-top: 50px;
 }
 
