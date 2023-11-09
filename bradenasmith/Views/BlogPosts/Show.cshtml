@@ -1,45 +1,67 @@
-﻿@model BlogPost
+﻿<link rel="stylesheet" href="/css/BlogPost.css" />
 
-    <h1>@Model.Topic</h1>
+@model BlogPost
+@{
+    string test = "https://google.com";
+    string google = "google";
+}
 
-    <p><strong>Braden Smith</strong></p>
-    <p><strong>@Model.CreatedAt.ToShortDateString()</strong></p>
+<div class="article">
+    <h1 style="text-align: center; margin-bottom: 50px; margin-top: 50px;">@Model.Topic</h1>
 
-    <h3>@Model.SecOneTitle</h3>
-    <h6>@Model.SecOneContent</h6>
-
-    <h3>@Model.SecTwoTitle</h3>
-    <h6>@Model.SecTwoContent</h6>
+    <div class="article-header">
+        <h4><strong>Braden Smith</strong></h4>
+        <h6><strong>@Model.CreatedAt.ToShortDateString()</strong></h6>
+    </div>
+    
+<div class="all-article-sections">
+    <div class="article-section">
+        <h3>@Model.SecOneTitle</h3>
+        <p>@Model.SecOneContent</p>
+    </div>
+    <div class="article-section">
+        <h3>@Model.SecTwoTitle</h3>
+        <p>@Model.SecTwoContent</p>
+    </div>
 
     @if (Model.SecThreeTitle != null && Model.SecThreeContent != null)
     {
+    <div class="article-section">
         <h3>@Model.SecThreeTitle</h3>
-        <h6>@Model.SecThreeContent</h6>
+        <p>@Model.SecThreeContent</p>
+    </div>
     }
 
     @if (Model.SecFourTitle != null && Model.SecFourContent != null)
     {
+    <div class="article-section">
         <h3>@Model.SecFourTitle</h3>
-        <h6>@Model.SecFourContent</h6>
+        <p>@Model.SecFourContent</p>
+    </div>
     }
 
     @if (Model.SecFiveTitle != null && Model.SecFiveContent != null)
     {
+    <div class="article-section">
         <h3>@Model.SecFiveTitle</h3>
-        <h6>@Model.SecFiveContent</h6>
+        <p>@Model.SecFiveContent</p>
+    </div>
     }
 
-<button id="showCommentButton">Show Comment Box</button>
+        <button id="showCommentButton" class="btn-outline-success">Add a Comment</button>
 <div id="commentBox" style="display: none;">
 
     <form action="/Blogs/@Model.Topic/Comment/New" method="post">
-        <textarea id="commentText" rows="4" cols="50" placeholder="Start typing..." name="Content"></textarea>
+                <textarea id="commentText" rows="4" cols="50" placeholder="Start typing..." name="Content" class="comment-input form-label mt-4"></textarea>
         <input hidden value="@Model.Id" name="BlogPostId" />
-        @*<input hidden value="@DateTime.Now.ToUniversalTime()" name="CreatedAt" /><!--THIS IS SENT PROPERLY-->*@
 
-        <button id="addCommentButton" type="submit">Add Comment</button>
+        <br />
+        <button id="addCommentButton" type="submit" class="submit-comment">Add Comment</button>
     </form> 
 </div>
+    </div>
+    <div class="article-comments">
+
 
 @if (Model.Comments != null)
 {
@@ -50,4 +72,6 @@
         }
     </ul>
 }
+    </div>
 <script src="script.js"></script>
+</div>
