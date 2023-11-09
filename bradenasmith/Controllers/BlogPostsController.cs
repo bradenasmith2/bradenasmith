@@ -2,6 +2,7 @@
 using bradenasmith.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace bradenasmith
 {
@@ -24,14 +25,14 @@ namespace bradenasmith
         [Route("/Blogs/{topic}")]
         public IActionResult Show(string topic)
         {
-            var blog = _context.BlogPosts.Where(e => e.Topic == topic).Single();
+            var blog = _context.BlogPosts.Include(e => e.Comments).Where(e => e.Topic.ToLower() == topic.ToLower()).SingleOrDefault();
             return View(blog);
         }
 
-        //[Route("/Blogs/New")]
-        //public IActionResult New()
-        //{
-        //    return View();
-        //}
+        [Route("/Blogs/New")]
+        public IActionResult New()
+        {
+            return View();
+        }
     }
 }

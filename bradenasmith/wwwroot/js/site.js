@@ -1,4 +1,24 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.addEventListener("DOMContentLoaded", function () {
+    // Get references to the button and the comment box
+    const showCommentButton = document.getElementById("showCommentButton");
+    const commentBox = document.getElementById("commentBox");
 
-// Write your JavaScript code.
+    // Add an event listener to the "Show Comment Box" button
+    showCommentButton.addEventListener("click", function () {
+        // Toggle the display of the comment box when the button is clicked
+        if (commentBox.style.display === "none") {
+            commentBox.style.display = "block";
+        } else {
+            commentBox.style.display = "none";
+        }
+    });
+
+    // Get a reference to the "Add Comment" button and the comment textarea
+    const addCommentButton = document.getElementById("addCommentButton");
+    const commentText = document.getElementById("commentText");
+
+    // Add an event listener to the "Add Comment" button
+    addCommentButton.addEventListener("click", function () {
+        // Get the comment text from the textarea
+    });
+});
