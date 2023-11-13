@@ -1,5 +1,10 @@
 ﻿@model Project
+@{
+    string readme = ViewData["Readme"] as string;
+}
 
 <h4>@Model.Name</h4>
 <h4>@Model.Description</h4>
 <h4>@Model.Id</h4>
+
+<p>@Markdown.ParseHtmlString(Model.Content)</p>

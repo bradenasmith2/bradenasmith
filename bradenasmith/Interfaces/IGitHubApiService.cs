@@ -5,5 +5,6 @@ namespace bradenasmith.Interfaces
     {
         Task<List<Project>> GetAllReposAsync();
         Task<Project> GetProjectAsync(string projectName, string username);
+        Task<string> GetRepoReadmeAsync(string projectName, string username);
     }
 }

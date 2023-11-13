@@ -14351,6 +14351,11 @@ textarea.form-control-lg {
         box-shadow: inset 1px 1px 7px rgba(0, 0, 0, 0.2);
     }
 
+.icon-and-text {
+    display: flex;
+    align-items: center;
+}
+
 .form-control::-webkit-file-upload-button {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), inset 3px 3px 10px rgba(120, 123, 125, 0.1);
 }
