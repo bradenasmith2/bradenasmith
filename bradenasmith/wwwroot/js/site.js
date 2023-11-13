@@ -24,3 +24,13 @@
         // Get the comment text from the textarea
     });
 });
+
+$(document).ready(function () {
+    $(".edit-button").on("click", function () {
+        var commentContent = $(this).data("comment-content");
+        var editForm = $(this).siblings(".edit-form");
+        editForm.find("textarea").val(commentContent);
+        editForm.toggle();
+        $(this).siblings(".comment-content").toggle();
+    });
+});
