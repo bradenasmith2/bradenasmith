@@ -24,6 +24,11 @@ namespace bradenasmith.Controllers
         [Route("/Blogs/{topic}/Comment/New")]
         public IActionResult Index(string topic, Comment comment, int BlogPostId)//BlogPostId comes from a HIDDEN input.
         {
+            string uniqueIdentifier = Guid.NewGuid().ToString();
+
+            Response.Cookies.Append("AnonUser", uniqueIdentifier);
+
+            comment.AnonId = uniqueIdentifier;
             comment.BlogPost = _context.BlogPosts.Find(BlogPostId);
             comment.CreatedAt = DateTime.Now.ToUniversalTime();
 
@@ -37,24 +42,20 @@ namespace bradenasmith.Controllers
         [Route("/Blogs/{topic}/Comment/{commentId}/Edit")]
         public IActionResult Edit(string topic, int commentId, Comment updatedComment)
         {
-            var blog = _context.BlogPosts.Include(e => e.Comments).Where(e => e.Topic.ToLower() == topic.ToLower()).FirstOrDefault();
-
-            if (blog == null)
+            if(updatedComment.AnonId == Request.Cookies["AnonUserId"])
             {
-                return NotFound();
+                var blog = _context.BlogPosts.Include(e => e.Comments).Where(e => e.Topic.ToLower() == topic.ToLower()).FirstOrDefault();
+                var comment = blog.Comments.FirstOrDefault(c => c.Id == commentId);
+
+                comment.Content = updatedComment.Content;
+                _context.SaveChanges();
+
+                return Redirect($"/Blogs/{topic}");
             }
-
-            var comment = blog.Comments.FirstOrDefault(c => c.Id == commentId);
-
-            if (comment == null)
+            else
             {
-                return NotFound();
+                return BadRequest();
             }
-
-            comment.Content = updatedComment.Content;
-            _context.SaveChanges();
-
-            return Redirect($"/Blogs/{topic}");
         }
 
         [HttpPost]

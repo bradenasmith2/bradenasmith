@@ -26,6 +26,8 @@ namespace bradenasmith
         public IActionResult Show(string topic)
         {
             var blog = _context.BlogPosts.Include(e => e.Comments).Where(e => e.Topic.ToLower() == topic.ToLower()).SingleOrDefault();
+
+            ViewData["AnonUserId"] = Request.Cookies["AnonUser"];
             return View(blog);
         }
 
