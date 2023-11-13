@@ -1,9 +1,9 @@
 ﻿<link rel="stylesheet" href="/css/BlogPost.css" />
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/trash-empty.css' rel='stylesheet'>
 
 @model BlogPost
 @{
-    string test = "https://google.com";
-    string google = "google";
+    Comment comment = ViewBag.CommentObj;
 }
 
 <div class="article">
@@ -47,8 +47,9 @@
         <p>@Model.SecFiveContent</p>
     </div>
     }
-
-        <button id="showCommentButton" class="btn-outline-success">Add a Comment</button>
+        <hr style="border: 1px solid #000;" />
+        <button id="showCommentButton" class="btn-outline-success show-comment">Add a Comment</button>
+        
 <div id="commentBox" style="display: none;">
 
     <form action="/Blogs/@Model.Topic/Comment/New" method="post">
@@ -56,22 +57,63 @@
         <input hidden value="@Model.Id" name="BlogPostId" />
 
         <br />
+                
         <button id="addCommentButton" type="submit" class="submit-comment">Add Comment</button>
+                <p class="text-danger">All comments are anonymous.</p>
     </form> 
 </div>
     </div>
     <div class="article-comments">
-
-
-@if (Model.Comments != null)
+        <h4>Comments</h4>
+        @if (Model.Comments != null)
+        {
+            <ul class="comments">
+                @foreach (var e in Model.Comments)
+                {
+                    <li>
+                        <button type="button" class="edit-button" data-comment-content="@e.Content">Edit</button>
+                        <span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> <span class="comment-content">@e.Content</span>
+                        <form class="edit-form" style="display: none;" action="/Blogs/@Model.Topic/Comment/@e.Id/Edit" method="post">
+                            <textarea rows="4" cols="50" name="Content" class="comment-input form-label mt-4"></textarea>
+                            <input hidden value="@Model.Id" name="BlogPostId" />
+                            <button type="submit" class="submit-comment">Confirm Changes</button>
+                            <p class="text-danger">All comments are anonymous.</p>
+                        </form>
+                        <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        }
+@*@if (Model.Comments != null)
 {
     <ul class="comments">
         @foreach (var e in Model.Comments)
         {
-            <li><span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> @e.Content</li>
+            <form>
+                    <li><button type="submit" style="all:unset;"><i class="gg-trash-empty"></i></button><span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> @e.Content</li>
+                    
+            </form>
+            <form action="/Blogs/@Model.Topic/Comment/@e.Id/Edit">
+                    <li><button type="submit">edit</button></li>
+            </form>
         }
     </ul>
-}
+
+    @if(ViewBag.CommentObj != null)
+            {
+                <form action="/Blogs/@Model.Topic/Comment/@comment.Id/Edit" method="post">
+                    <textarea rows="4" cols="50" value="@comment.Content" name="Content" class="comment-input form-label mt-4"></textarea>
+                    <input hidden value="@Model.Id" name="BlogPostId" />
+
+                    <br />
+
+                    <button type="submit" class="submit-comment">Confirm Changes</button>
+                    <p class="text-danger">All comments are anonymous.</p>
+                </form>
+            }
+}*@
     </div>
-<script src="script.js"></script>
+<script src="/js/script.js"></script>
 </div>
