@@ -3,7 +3,7 @@
 
 @model BlogPost
 @{
-    Comment comment = ViewBag.CommentObj;
+    string anonId = ViewData["AnonUserId"] as string;
 }
 
 <div class="article">
@@ -71,17 +71,24 @@
                 @foreach (var e in Model.Comments)
                 {
                     <li>
-                        <button type="button" class="edit-button" data-comment-content="@e.Content">Edit</button>
-                        <span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> <span class="comment-content">@e.Content</span>
-                        <form class="edit-form" style="display: none;" action="/Blogs/@Model.Topic/Comment/@e.Id/Edit" method="post">
-                            <textarea rows="4" cols="50" name="Content" class="comment-input form-label mt-4"></textarea>
-                            <input hidden value="@Model.Id" name="BlogPostId" />
-                            <button type="submit" class="submit-comment">Confirm Changes</button>
-                            <p class="text-danger">All comments are anonymous.</p>
-                        </form>
-                        <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post">
-                            <button type="submit">Delete</button>
-                        </form>
+                        @if(anonId == e.AnonId)
+                        {
+                            <button type="button" class="edit-button" data-comment-content="@e.Content">Edit</button>
+                            <span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> <span class="comment-content">@e.Content</span>
+                            <form class="edit-form" style="display: none;" action="/Blogs/@Model.Topic/Comment/@e.Id/Edit" method="post">
+                                <textarea rows="4" cols="50" name="Content" class="comment-input form-label mt-4"></textarea>
+                                <input hidden value="@Model.Id" name="BlogPostId" />
+                                <button type="submit" class="submit-comment">Confirm Changes</button>
+                                <p class="text-danger">All comments are anonymous.</p>
+                            </form>
+                            <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> <span class="comment-content">@e.Content</span>
+                        }
                     </li>
                 }
             </ul>

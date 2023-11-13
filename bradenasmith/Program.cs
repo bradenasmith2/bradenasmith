@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using bradenasmith.DataAccess;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

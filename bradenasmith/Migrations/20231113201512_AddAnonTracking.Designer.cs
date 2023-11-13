@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using bradenasmith.DataAccess;
@@ -11,9 +12,11 @@ using bradenasmith.DataAccess;
 namespace bradenasmith.Migrations
 {
     [DbContext(typeof(bradenasmithContext))]
-    partial class bradenasmithContextModelSnapshot : ModelSnapshot
+    [Migration("20231113201512_AddAnonTracking")]
+    partial class AddAnonTracking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
