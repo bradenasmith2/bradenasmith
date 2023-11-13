@@ -1,6 +1,8 @@
 ﻿using bradenasmith.Interfaces;
 using bradenasmith.Models;
+using Markdig;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 
 namespace bradenasmith.Services
@@ -50,7 +52,28 @@ namespace bradenasmith.Services
             {
                 throw new HttpRequestException(response.ReasonPhrase) ;
             }
+            result.Content = await GetRepoReadmeAsync(projectName, username);
             return result;
+        }
+
+        public async Task<string> GetRepoReadmeAsync(string projectName, string username)
+        {
+            string url = $"/repos/{username}/{projectName}/readme";
+            var response = await Client.GetAsync(url);
+            var result = new Readme();
+            string htmlContent = "fail";
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<Readme>(jsonResponse, new JsonSerializerOptions() { PropertyNamingPolicy= JsonNamingPolicy.CamelCase });
+
+                byte[] data = Convert.FromBase64String(result.Content);
+                string markdownContent = Encoding.UTF8.GetString(data);
+
+                htmlContent = Markdig.Markdown.ToHtml(markdownContent);
+            }
+            return htmlContent;
         }
     }
 }
