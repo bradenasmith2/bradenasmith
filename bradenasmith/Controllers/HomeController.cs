@@ -24,8 +24,8 @@ namespace bradenasmith.Controllers
             return View();
         }
 
-        [Route("/CoverLetter")]
-        public IActionResult CoverLetter() 
+        [Route("/Background")]
+        public IActionResult Background() 
         { 
             return View();
         }
