@@ -34,3 +34,30 @@ $(document).ready(function () {
         $(this).siblings(".comment-content").toggle();
     });
 });
+
+
+function toggleEditAndDeleteButtons(button) {
+    var editForm = button.nextElementSibling; // Assuming the edit form is always the next sibling
+    var deleteForm = editForm.nextElementSibling; // Assuming the delete form is the next sibling of the edit form
+
+    if (editForm.style.display === 'none') {
+        // "Edit" button is pressed, show both "Confirm Changes" and "Delete" buttons
+        editForm.style.display = 'block';
+        deleteForm.style.display = 'block';
+
+    } else {
+        // "Edit" button is not pressed, hide both "Confirm Changes" and "Delete" buttons
+        editForm.style.display = 'none';
+        deleteForm.style.display = 'none';
+    }
+}
+
+function toggleDeleteButton() {
+    var deleteForm = document.getElementById('deleteForm');
+
+    if (deleteForm.style.display === 'none') {
+        deleteForm.style.display = 'block';
+    } else {
+        deleteForm.style.display = 'none';
+    }
+}

@@ -24,18 +24,33 @@ namespace bradenasmith.Controllers
         [Route("/Blogs/{topic}/Comment/New")]
         public IActionResult Index(string topic, Comment comment, int BlogPostId)//BlogPostId comes from a HIDDEN input.
         {
-            string uniqueIdentifier = Guid.NewGuid().ToString();
+            if (Request.Cookies["AnonUser"] == null)
+            {
+                string anonId = Guid.NewGuid().ToString();
+                var anonUser = new User();
 
-            Response.Cookies.Append("AnonUser", uniqueIdentifier);
+                anonUser.Id = anonId;
+                Response.Cookies.Append("AnonUser", anonId);
+                comment.AnonId = anonId;
+                comment.BlogPost = _context.BlogPosts.Find(BlogPostId);
+                comment.CreatedAt = DateTime.Now.ToUniversalTime();
+                anonUser.Comments.Add(comment);
+            }
+            else
+            {
+                var anonUser = new User();
 
-            comment.AnonId = uniqueIdentifier;
-            comment.BlogPost = _context.BlogPosts.Find(BlogPostId);
-            comment.CreatedAt = DateTime.Now.ToUniversalTime();
+                anonUser.Id = Request.Cookies["AnonUser"];
 
+                comment.BlogPost = _context.BlogPosts.Find(BlogPostId);
+                comment.CreatedAt = DateTime.Now.ToUniversalTime();
+                comment.AnonId = anonUser.Id;
+                anonUser.Comments.Add(comment);
+            }
             _context.Comments.Add(comment);
             _context.SaveChanges();
 
-            return Redirect($"/blogs/{topic}");
+            return Redirect($"/Blogs/{topic}");
         }
 
         [HttpPost]
