@@ -1,5 +1,6 @@
 ﻿using Markdig;
 
+using Markdig.Extensions.AutoIdentifiers;
 using Microsoft.AspNetCore.Html;
 public static class Markdown
 {
@@ -7,7 +8,7 @@ public static class Markdown
     {
         var builder = new MarkdownPipelineBuilder();
         builder.UseAbbreviations()
-            .UseAutoIdentifiers()
+            .UseAutoIdentifiers(AutoIdentifierOptions.GitHub)
             .UseCitations()
             .UseDefinitionLists()
             .UseEmphasisExtras()
@@ -27,8 +28,25 @@ public static class Markdown
             .UseTaskLists()
             .UseDiagrams()
             .UseAutoLinks()
+            .UseGenericAttributes()
+            .UseCitations()
+            .UseCustomContainers()
+            .UseDefinitionLists()
+            .UseEmphasisExtras()
+            .UseFigures()
+            .UseFooters()
+            .UseFootnotes()
+            .UseGridTables()
+            .UseMathematics()
+            .UseMediaLinks()
+            .UsePipeTables()
+            .UseListExtras()
+            .UseTaskLists()
+            .UseDiagrams()
+            .UseAutoLinks()
             .UseGenericAttributes();
-        
+
+
         var mdPipeline = builder.Build();
         if(markdown != null)
         {
