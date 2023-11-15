@@ -1,4 +1,6 @@
-﻿@model Project
+﻿<link href="~/css/HomePage.css" rel="stylesheet"/>
+
+@model Project
 @{
     string readme = ViewData["Readme"] as string;
 }
@@ -9,5 +11,6 @@
     <h4>ID: @Model.Id</h4>
 </div>
 
-
-<p>@Markdown.ParseHtmlString(Model.Content)</p>
+<div class="readme">
+    @Markdown.ParseHtmlString(Model.Content)
+</div>
