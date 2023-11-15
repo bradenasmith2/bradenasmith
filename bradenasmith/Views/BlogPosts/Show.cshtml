@@ -72,25 +72,34 @@
                 @foreach (var e in Model.Comments)
                 {
                     <li>
-                        @if(anonId == e.AnonId)
+                        @if(anonId != e.AnonId)
                         {
-                            <button type="button" class="no-border edit-button" data-comment-content="@e.Content" onclick="toggleEditAndDeleteButtons(this), toggleDeleteButton()">
-                                <i class="gg-chevron-down-r"></i>
-                            </button>
                             <span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> <span class="comment-content">@e.Content</span>
-                            <form class="edit-form" style="display: none; margin-top: 10px;" action="/Blogs/@Model.Topic/Comment/@e.Id/Edit" method="post">
-                                <textarea rows="4" cols="50" name="Content" class="comment-input form-label mt-4"></textarea>
-                                <input hidden value="@Model.Id" name="BlogPostId" />
-                                <br />
-                                <button type="submit" class="confirm-changes submit-comment" style="display: inline-block;">Confirm Changes</button>
-                            </form>
-                            <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post" style="display: none;" id="deleteForm">
-                                <button type="submit" class="submit-comment" style="display: inline-block; background-color: darkred">Delete</button>
-                            </form>
+                            
                         }
                         else
                         {
-                            <span style="font-size: 14px;"><strong>@e.CreatedAt.ToShortDateString()</strong>:</span> <span class="comment-content">@e.Content</span>
+                            <div class="comment-container">
+                                <button type="button" class="no-border edit-button" data-comment-content="@e.Content" onclick="toggleDeleteButton()">
+                                    <i class="gg-chevron-down-r"></i>
+                                </button>
+
+                                <span class="comment-meta">
+                                    <strong>@e.CreatedAt.ToShortDateString()</strong>:
+                                </span>
+
+                                <span class="comment-content">@e.Content</span>
+                                    <form class="edit-form" style="display: none;" action="/Blogs/@Model.Topic/Comment/@e.Id/Edit" method="post">
+                                        <textarea rows="4" cols="50" name="Content" class="comment-input form-label mt-4"></textarea>
+                                        <input hidden value="@Model.Id" name="BlogPostId" />
+                                        <br />
+                                        <button type="submit" class="confirm-changes submit-comment">Confirm Changes</button>
+                                    </form>
+
+                                    <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post" style="display: none;" id="deleteForm">
+                                        <button type="submit" class="delete-comment submit-comment" style="background-color: red; border-radius: 25px; border-width: 1px; border: solid;">Delete</button>
+                                    </form>
+                            </div>
                         }
                     </li>
                 }

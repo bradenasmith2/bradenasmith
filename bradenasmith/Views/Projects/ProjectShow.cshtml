@@ -3,8 +3,11 @@
     string readme = ViewData["Readme"] as string;
 }
 
-<h4>@Model.Name</h4>
-<h4>@Model.Description</h4>
-<h4>@Model.Id</h4>
+<div class="headers" style="text-align: center;">
+    <h1>@Model.Name</h1>
+    <h2>@Model.Description</h2>
+    <h4>ID: @Model.Id</h4>
+</div>
+
 
 <p>@Markdown.ParseHtmlString(Model.Content)</p>

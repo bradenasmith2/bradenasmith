@@ -20,6 +20,8 @@ Log.Logger = new LoggerConfiguration()
             .WriteTo.File("Logs", rollingInterval: RollingInterval.Day)
             .CreateLogger();
 
+
+
 builder.Services.AddDbContext<bradenasmithContext>(
     options =>
         options
