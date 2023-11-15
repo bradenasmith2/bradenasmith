@@ -31,10 +31,10 @@ namespace bradenasmith
             return View(blog);
         }
 
-        [Route("/Blogs/New")]
-        public IActionResult New()
-        {
-            return View();
-        }
+        //[Route("/Blogs/New")]
+        //public IActionResult New()
+        //{
+        //    return View();
+        //}
     }
 }

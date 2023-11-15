@@ -15,11 +15,6 @@ namespace bradenasmith.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         [Route("/Blogs/{topic}/Comment/New")]
         public IActionResult Index(string topic, Comment comment, int BlogPostId)//BlogPostId comes from a HIDDEN input.
