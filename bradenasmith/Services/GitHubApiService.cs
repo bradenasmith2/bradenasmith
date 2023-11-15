@@ -1,9 +1,12 @@
 ﻿using bradenasmith.Interfaces;
 using bradenasmith.Models;
 using Markdig;
+using Markdig.Renderers;
+using MarkdownSharp;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using GitHubOcto = Octokit;
 
 namespace bradenasmith.Services
 {
@@ -70,6 +73,9 @@ namespace bradenasmith.Services
 
                 byte[] data = Convert.FromBase64String(result.Content);
                 string markdownContent = Encoding.UTF8.GetString(data);
+
+                var markdownTransformer = new MarkdownSharp.Markdown();
+                var html = markdownTransformer.Transform(markdownContent);
 
                 htmlContent = Markdig.Markdown.ToHtml(markdownContent);
             }

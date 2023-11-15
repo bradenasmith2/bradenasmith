@@ -82,3 +82,8 @@
     margin-left: 0px;
     margin-right: 20px
 }
+
+.delete-comment {
+    display: inline-block;
+    background-color: darkred;
+}

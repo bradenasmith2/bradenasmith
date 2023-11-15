@@ -27,11 +27,25 @@
 
 $(document).ready(function () {
     $(".edit-button").on("click", function () {
-        var commentContent = $(this).data("comment-content");
+        var commentContent = $(this).siblings(".comment-content");
         var editForm = $(this).siblings(".edit-form");
-        editForm.find("textarea").val(commentContent);
-        editForm.toggle();
-        $(this).siblings(".comment-content").toggle();
+        var textarea = editForm.find("textarea");
+
+        if (editForm.is(":hidden")) {
+            // "Edit" button is pressed, show the edit form and hide the comment content
+            textarea.val(commentContent.text().trim());
+            editForm.show();
+            commentContent.hide();
+        } else {
+            // "Edit" button is pressed again, hide the edit form and show the comment content
+            editForm.hide();
+            commentContent.show();
+        }
+    });
+
+    $(".delete-button").on("click", function () {
+        var deleteForm = $("#deleteForm");
+        deleteForm.toggle();
     });
 });
 
@@ -42,8 +56,8 @@ function toggleEditAndDeleteButtons(button) {
 
     if (editForm.style.display === 'none') {
         // "Edit" button is pressed, show both "Confirm Changes" and "Delete" buttons
-        editForm.style.display = 'block';
-        deleteForm.style.display = 'block';
+        editForm.style.display = 'inline-block';
+        deleteForm.style.display = 'inline-block';
 
     } else {
         // "Edit" button is not pressed, hide both "Confirm Changes" and "Delete" buttons

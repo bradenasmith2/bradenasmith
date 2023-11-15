@@ -15,6 +15,11 @@ public static class Markdown
             .UseFooters()
             .UseFootnotes()
             .UseGridTables()
+            .UseAdvancedExtensions()
+            .UsePragmaLines()
+            .UsePreciseSourceLocation()
+            .UseYamlFrontMatter()
+            .UseEmojiAndSmiley()
             .UseMathematics()
             .UseMediaLinks()
             .UsePipeTables()
@@ -23,6 +28,7 @@ public static class Markdown
             .UseDiagrams()
             .UseAutoLinks()
             .UseGenericAttributes();
+        
         var mdPipeline = builder.Build();
         if(markdown != null)
         {
