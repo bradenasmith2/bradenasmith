@@ -1,5 +1,6 @@
 ﻿using bradenasmith.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace bradenasmith.Controllers
 {
@@ -15,16 +16,39 @@ namespace bradenasmith.Controllers
         [Route("/Projects")]
         public async Task<IActionResult> Index()
         {
-            var repos = await _gitHubApiService.GetAllReposAsync();
-            return View(repos);
+            try
+            {
+                var repos = await _gitHubApiService.GetAllReposAsync();
+                return View(repos);
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal($"Failed to grab repos, error: {ex.Message}");
+                return BadRequest();
+            }
         }
 
         [Route("/Projects/{Username}/{ProjectName}")]
         public async Task<IActionResult> ProjectShow(string ProjectName, string Username)
         {
-            var repo = await _gitHubApiService.GetProjectAsync(ProjectName, Username);
+            if(ProjectName !=null && Username != null)
+            {
+                try
+                {
+                    var repo = await _gitHubApiService.GetProjectAsync(ProjectName, Username);
 
-            return View(repo);
+                    return View(repo);
+                }
+                catch(Exception ex)
+                {
+                    Log.Fatal($"Failed to pull repo, error: {ex.Message}");
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
