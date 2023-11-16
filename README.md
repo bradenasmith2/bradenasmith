@@ -1,24 +1,30 @@
-# 🚧 bradenasmith 🚧
+# 🚧 Showcase 🚧
 
 ## What is this?
 - This app is designed to showcase my skills as a full-stack software developer. Additionally, it displays my learning journey by including all of my Today I Learned blog posts, which greatly contributed to my success as a developer. Along with the blog posts, anyone can anonymously CRUD comments on each post.
 
 ## Project Context
 - Number of Contributors: **1**
-- Total Work Time: **6/48 Hours**
-- < SCREENSHOT OF HOME PAGE >
+- Total Work Time: **48 Hours**
+![image](https://github.com/bradenasmith2/bradenasmith/assets/80287373/709d95f8-4865-43a8-8a5d-336b6ee9a85b)
 
-IF DEPLOYED
-< LINK >
-<br>
-IF NOT DEPLOYED
-< GETTING STARTED >
+<br></br>
+## 📝 Getting Started
+- Clone repo
+- Add Db connection string to UserSecrets (or other)
+- Place UserSecrets Key in program.cs where the Db connection is made
+- update-database
+- **NOTE** There is no seed data for this project
+- Create GitHub personal token [here](https://github.com/settings/tokens/)
+- Add the personal token to UserSecrets (or other)
+- Place UserSecrets key in the GitHubApiService
 
 ## 📺 Tech Stack 
-- [Bootstrap](https://getbootstrap.com/)
+- [Bootstrap](https://bootswatch.com/morph/)
 - [ASP .NET Core](https://github.com/dotnet/aspnetcore)
 - [Entity Framework Core](https://github.com/dotnet/efcore)
 - [PostgreSQL](https://www.postgresql.org/)
+- [MarkDig](https://github.com/xoofx/markdig)
 
 ## 👀 Maintained With 
 - [Serilog](https://serilog.net/)
