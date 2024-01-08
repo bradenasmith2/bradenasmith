@@ -51,27 +51,23 @@ $(document).ready(function () {
 
 
 function toggleEditAndDeleteButtons(button) {
-    var editForm = button.nextElementSibling; // Assuming the edit form is always the next sibling
-    var deleteForm = editForm.nextElementSibling; // Assuming the delete form is the next sibling of the edit form
+    var editForm = button.nextElementSibling; // The edit form is the next sibling
+    var deleteButton = editForm.nextElementSibling; // The delete button is the next sibling of the edit form
 
+    // Toggle display of the edit form and delete button
     if (editForm.style.display === 'none') {
-        // "Edit" button is pressed, show both "Confirm Changes" and "Delete" buttons
-        editForm.style.display = 'inline-block';
-        deleteForm.style.display = 'inline-block';
-
+        editForm.style.display = 'block'; // Show edit form
+        deleteButton.style.display = 'block'; // Show delete button
     } else {
-        // "Edit" button is not pressed, hide both "Confirm Changes" and "Delete" buttons
-        editForm.style.display = 'none';
-        deleteForm.style.display = 'none';
+        editForm.style.display = 'none'; // Hide edit form
+        deleteButton.style.display = 'none'; // Hide delete button
     }
 }
 
-function toggleDeleteButton() {
-    var deleteForm = document.getElementById('deleteForm');
+function toggleDeleteButton(clickedButton) {
+    // Find the delete form related to the clicked button
+    var deleteForm = $(clickedButton).closest('li').find('.delete-form').first();
 
-    if (deleteForm.style.display === 'none') {
-        deleteForm.style.display = 'block';
-    } else {
-        deleteForm.style.display = 'none';
-    }
+    // Toggle the display of the delete form
+    deleteForm.toggle();
 }
