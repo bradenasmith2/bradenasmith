@@ -70,7 +70,9 @@ namespace bradenasmith.Services
                 result = JsonSerializer.Deserialize<Readme>(jsonResponse, new JsonSerializerOptions() { PropertyNamingPolicy= JsonNamingPolicy.CamelCase });
 
                 byte[] data = Convert.FromBase64String(result.Content);
+
                 string markdownContent = Encoding.UTF8.GetString(data);
+
 
                 htmlContent = Markdown.Parse(markdownContent);
             }

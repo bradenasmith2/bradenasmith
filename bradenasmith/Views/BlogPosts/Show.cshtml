@@ -80,7 +80,7 @@
                         else
                         {
                             <div class="comment-container">
-                                <button type="button" class="no-border edit-button" data-comment-content="@e.Content" onclick="toggleDeleteButton()">
+                                <button type="button" class="no-border edit-button" data-comment-content="@e.Content" onclick="toggleDeleteButton(this)">
                                     <i class="gg-chevron-down-r"></i>
                                 </button>
 
@@ -96,8 +96,8 @@
                                         <button type="submit" class="confirm-changes submit-comment">Confirm Changes</button>
                                     </form>
 
-                                    <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post" style="display: none;" id="deleteForm">
-                                        <button type="submit" class="delete-comment submit-comment" style="background-color: red; border-radius: 25px; border-width: 1px; border: solid;">Delete</button>
+                                    <form action="/Blogs/@Model.Topic/Comment/@e.Id/Delete" method="post" style="display: none;" class="delete-form">
+                                        <button type="submit" class="delete-comment submit-comment" style="background-color: red; border-radius: 25px; border-width: 1px; border: solid;" >Delete</button>
                                     </form>
                             </div>
                         }
